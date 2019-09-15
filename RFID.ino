@@ -1,62 +1,67 @@
-/*
- * 
- * All the resources for this project: https://www.hackster.io/Aritro
- * Modified by Aritro Mukherjee
- * 
- * 
- */
- 
-#include <SPI.h>
+#include <require_cpp11.h>
 #include <MFRC522.h>
- 
-#define SS_PIN 10
-#define RST_PIN 9
-MFRC522 mfrc522(SS_PIN, RST_PIN);   // Create MFRC522 instance.
- 
-void setup() 
+#include <deprecated.h>
+#include <MFRC522Extended.h>
+
+#include <MFRC522.h>  // MFRC522 RFID module library.
+#include <SPI.h>      // SPI device communication library.
+#include <EEPROM.h>   // EEPROM (memory) library.
+
+#define pinRST 9      // Defines pins for RST, SS conncetions respectively.
+#define pinSS 10
+
+byte readCard[4];     // Array that will hold UID of the RFID card.
+int successRead;
+
+MFRC522 mfrc522(pinSS, pinRST);   // Creates MFRC522 instance.
+MFRC522::MIFARE_Key key;          // Creates MIFARE key instance.
+
+void setup()
 {
-  Serial.begin(9600);   // Initiate a serial communication
-  SPI.begin();      // Initiate  SPI bus
-  mfrc522.PCD_Init();   // Initiate MFRC522
-  Serial.println("Approximate your card to the reader...");
-  Serial.println();
+  Serial.begin(9600); // Starts the serial connection at 9600 baud rate.
+  SPI.begin();        // Initiates SPI connection between RFID module and Arduino.
+  mfrc522.PCD_Init(); // Initiates MFRC522 RFID module.
+
+  Serial.println("RFID reading process initiated.");    // Prints user commands.
+  Serial.println("Please scan your RFID card to the reader.");
+
+  do {
+    successRead = getID();     // Loops getID library function until reading process is done.
+  }
+
+  while (!successRead);
+  for ( int i = 0; i < mfrc522.uid.size; i++ )  // You can add multiple cards to read in the for loop.
+  {
+    EEPROM.write(i, readCard[i] );     // Saves RFID cards UID to EEPROM.
+  }
+
+  Serial.println("RFID card information is saved to memory.");
 
 }
-void loop() 
+
+void loop()
 {
-  // Look for new cards
-  if ( ! mfrc522.PICC_IsNewCardPresent()) 
+getID(); 
+}
+
+
+int getID() // Function that will read and print the RFID cards UID.
+{
+  if ( ! mfrc522.PICC_IsNewCardPresent())  // If statement that looks for new cards.
   {
     return;
   }
-  // Select one of the cards
-  if ( ! mfrc522.PICC_ReadCardSerial()) 
+
+  if ( ! mfrc522.PICC_ReadCardSerial())    // If statement that selects one of the cards.
   {
     return;
   }
-  //Show UID on serial monitor
-  Serial.print("UID tag :");
-  String content= "";
-  byte letter;
-  for (byte i = 0; i < mfrc522.uid.size; i++) 
-  {
-     Serial.print(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " ");
-     Serial.print(mfrc522.uid.uidByte[i], HEX);
-     content.concat(String(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " "));
-     content.concat(String(mfrc522.uid.uidByte[i], HEX));
+  
+  Serial.print("UID: ");    
+  for (int i = 0; i < mfrc522.uid.size; i++) {  
+    readCard[i] = mfrc522.uid.uidByte[i];   // Reads RFID cards UID.
+    Serial.print(readCard[i], HEX);         // Prints RFID cards UID to the serial monitor.
   }
-  Serial.println();
-  Serial.print("Message : ");
-  content.toUpperCase();
-  if (content.substring(1) == "BD 31 15 2B") //change here the UID of the card/cards that you want to give access
-  {
-    Serial.println("Authorized access");
-    Serial.println();
-    delay(3000);
-  }
- 
- else   {
-    Serial.println(" Access denied");
-    delay(3000);
-  }
-} 
+
+  mfrc522.PICC_HaltA();     // Stops the reading process.
+}
