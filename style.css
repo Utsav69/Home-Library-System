@@ -1,39 +1,135 @@
-*{
+body {
+    background: rgb(56, 50, 50);
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;}
+
+header {
+    background-color: black;
+    background-image: url("books.jpg");
+    background-size: 100%;
+    background-position: centre;
+    height: 400px;
+    padding: 20px 45px 40px 20px;
+    text-align: center;
+
+}
+ header .logo {
+     background-image: url("logo.png");
+     background-size: 300px;
+     background-repeat: no-repeat;
+     display: inline-block;
+     height: 200px;
+     
+     text-indent: -999999px;
+     top: 40px;
+     left: -150px;
+     width: 300px;
+     position: relative;
+ }
+ 
+
+ .features figure img {
+     margin: auto;
+     border-radius: 50%;
+     width: 200px;
+ }
+ a .home {
+     margin: 0;
+ }
+
+section {
+    background: rgb(205, 205, 228);
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    height: 400px;
+    
+}
+button {
+    background-color: skyblue;
+}
+.Books {
+    background: gray;
+    color: black;
+    padding: 40px;
+    display: flex;
+    flex-direction: row;
+
+}
+.Books figure {
+    margin: auto;
+    width: 100px;
+}
+.Books figure img {
+    border-radius: 50%;
+    width: 200px;
+}
+
+.option { 
+    background: gray;
+    color: black;
+    padding: 40px;
+    display: flex;
+    flex-direction: row;
+
+}
+
+
+.option figure img {
+    border-radius: 20%;
+    width: 200px;
+}
+
+}
+div {
+    background: rgb(156, 226, 16);
+    margin: auto;
+    width: 100px;
+}
+
+ul {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    list-style-type: none;
 }
-body{
-    background: #eeeeee;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+li {
+    
+    display: inline-block;
+    margin-right: 100px;
+    padding: 0%;
 }
-.container{
-    width: 96%;
-    margin: 20px auto;
+a {
+    text-decoration: none;
+    color: black; 
+    
 }
-h1{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-transform: uppercase;
-    border-left: 8px solid #1abc9c;
-    margin: 10px;
+a:hover {
+    text-decoration: underline;
 }
-.book{
-    width: 48%;
-    float: left;
-    background: #ffffff;
-    margin: 5px;
-    padding: 10px;
+h1 {
+    color: black;
+    margin-right: 1300px;
+    border-top: 1000px;
+    ;
 }
-.icon{
-    width: 15%;
-    float: left;
-    line-height: 120px;
+h2 {
+    font-size: 120%;
+    color: grey;
 }
-button{
-    background: #1abc9c;
-    border-radius: 7px;
-    padding: 6px 6px;
-    color: #ffffff;
-    float: right;
-    cursor: pointer;
+p1 {
+    color: gray;
+}
+
+
+
+
+footer {
+    background: black;
+    padding: 20px 10px;
+    height: 100px;;
+    color: whitesmoke;
+
 }
