@@ -3,6 +3,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+section {
+    height: 100px;
+    padding-right: 1300px;
+}
 body{
     background: #eeeeee;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
