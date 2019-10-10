@@ -1,21 +1,37 @@
 <html>
     <head>
-        <title>Login Page </title>
+        
         <link rel="stylesheet" type="text/css" href="stylelogin.css">
         <body>
-            <div class="loginbox">
+            <div class="loginpage">
+                
                 <img src="logologin.png" class="logo">
-                <h1>Login Here</h1>
-                <form>
-                    <p>Username</p>
-                    <input type="text" name="" placeholder="Enter Username">
-                    <p>Password</p>
-                    <input type="password" name="" placeholder="Enter Password">
-                    
-                    <a href="index.html"><strong>Login</strong></a></br>
-                    <a href="registration.html"><strong>Don't have an account</strong></a></br>
-                </form>
+                <title>Login Page </title>
+                <h1>Login</h1>
+    
+                <div class="form-group">
+                    <label for="username">User Name</label>
+                    <input type="text" class="form-control" id="username" />
+                </div>
+    
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" />
+                </div>
+    
+                <button class="btn-success" id="login">Login</button>
+                <div id="errorrmessage"></div>
+                
+                <p>Don't have an account ? Register <a href="register.html">HERE</a></p>
+    
+                <tbody></tbody>
+                
+                <div id="footer"></div>
             </div>
+            <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+            <script src="app.js"></script>
+    
         </body>
 
     </head>

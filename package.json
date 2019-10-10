@@ -1,18 +1,21 @@
 {
-  "name": "project",
+  "name": "api",
   "version": "1.0.0",
-  "description": "a little test app",
-  "main": "app.js",
+  "description": "",
+  "main": "api.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon -r dotenv/config api.js"
   },
-  "keywords": [
-    "books",
-    "library"
-  ],
-  "author": "utsav, shubham",
+  "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
   }
 }
